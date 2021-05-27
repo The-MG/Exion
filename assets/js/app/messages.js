@@ -1,6 +1,14 @@
 function sendMessage(id, content) {
     if (content.length == 0) return;
     if (content.length > 10000) return;
+    if (content.includes == 'fuck'){
+        sendWS({
+        action: "sendMessage",
+        send_user_id: id,
+        raw: content.trim().replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&amp;/g, "&").replace('fuck', '####'),
+        attachments: null
+    });
+    }
 
     sendWS({
         action: "sendMessage",
